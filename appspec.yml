@@ -5,7 +5,7 @@ files:
     destination: C:\ExploringAspNetCore
 hooks:
   ApplicationStop:
-    - location: .\InstallApp.ps1
+    - location: .\RemoveApp.ps1
       timeout: 30
   ApplicationStart:
     - location: .\InstallApp.ps1
