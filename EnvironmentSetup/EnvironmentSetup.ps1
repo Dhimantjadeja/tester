@@ -7,17 +7,17 @@ Param(
     # The instance type for the beta stage
     [Parameter()]
     [string]
-    $betaInstanceType = "t2.small",
+    $betaInstanceType = "t2.micro",
 
     # The instance type for the prod stage
     [Parameter()]
     [string]
-    $prodInstanceType = "t2.medium",
+    $prodInstanceType = "t2.micro",
 
 	# true or false if you want the RDP port opened.
     [Parameter()]
     [bool]
-    $openRDPPort
+    $openRDPPort= "True"
 )
 
 function _LaunchCloudFormationStack([string]$bucketName, [string]$betaInstanceType, [string]$prodInstanceType, [string]$keyPair, [bool]$openRDP)
@@ -61,7 +61,7 @@ function _SetupPipelineBucket()
     Write-Host 'Setting up S3 source for pipeline: ' $bucketName
     Add-Type -assembly "system.io.compression.filesystem"
     $source = [System.io.Path]::Combine($PSScriptRoot, '..')
-    $destination = [System.io.Path]::Combine([System.io.Path]::GetTempPath(),  'aws-blog-net-exploring-aspnet-core.zip')
+    $destination = [System.io.Path]::Combine([System.io.Path]::GetTempPath(),  'tester.zip')
     If (Test-Path $destination)
     {
 	    Remove-Item $destination
@@ -71,7 +71,7 @@ function _SetupPipelineBucket()
     [io.compression.zipfile]::CreateFromDirectory($source, $destination)
 
     Write-Host 'Writing zip to S3'
-    Write-S3Object -BucketName $bucketName -File $destination -Key 'aws-blog-net-exploring-aspnet-core.zip'
+    Write-S3Object -BucketName $bucketName -File $destination -Key 'tester.zip'
 
     $bucketName
 }
@@ -128,7 +128,7 @@ function ProcessInput([string]$betaInstanceType,[string]$prodInstanceType,[strin
     ("Beta Stage DNS: " + $betaDNS)
     ("Prod Stage DNS: " + $prodDNS)
     ("S3 Bucket for Pipeline Source: " + $bucketName)
-    ("S3 Object Key for Pipeline Source: aws-blog-net-exploring-aspnet-core.zip")
+    ("S3 Object Key for Pipeline Source: tester.zip")
 }
 
 

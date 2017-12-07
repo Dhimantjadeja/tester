@@ -15,12 +15,12 @@
         "BetaInstanceType" : {
             "Type" : "String",
             "Description" : "The EC2 instance type to use when creating the application servers",
-            "Default"     : "t2.small"
+            "Default"     : "t2.micro"
         },
         "ProdInstanceType" : {
             "Type" : "String",
             "Description" : "The EC2 instance type to use when creating the application servers",
-            "Default"     : "t2.medium"
+            "Default"     : "t2.micrp"
         },
         "EC2KeyName"   : {
             "Type" : "AWS::EC2::KeyPair::KeyName",
@@ -735,7 +735,7 @@
                                     "S3Bucket" : {
                                         "Ref" : "PipelineBucket"
                                     },
-                                    "S3ObjectKey" : "aws-blog-net-exploring-aspnet-core.zip"
+                                    "S3ObjectKey" : "tester.zip"
                                 },
                                 "RunOrder"        : 1
                             }
