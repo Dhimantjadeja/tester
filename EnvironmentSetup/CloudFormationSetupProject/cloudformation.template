@@ -207,7 +207,7 @@
                 "Tags"               : [
                     {
                         "Key" : "Name",
-                        "Value" : "ExploringAspNetCorePart2-Beta"
+                        "Value" : "CodeDeployGroup"
                     }
                 ],
                 "UserData"           : {
@@ -394,7 +394,7 @@
                         "Ref" : "ProdLoadBalancer"
                     }
                 ],
-                "Tags" : [{"Key" : "Name", "Value" : "ExploringAspNetCorePart2-Prod", "PropagateAtLaunch" : true}
+                "Tags" : [{"Key" : "Name", "Value" : "CodeDeployGroup", "PropagateAtLaunch" : true}
 				]
             }
         },
@@ -500,7 +500,7 @@
                 "Tags"                     : [
                     {
                         "Key" : "Name",
-                        "Value" : "ExploringAspNetCorePart2-Prod"
+                        "Value" : "CodeDeployGroup"
                     }
                 ]
             }
@@ -568,7 +568,7 @@
             "Type" : "AWS::CodeDeploy::Application",
 			"DependsOn" : "WaitCondition",
 			"Properties" : {
-                "ApplicationName" : "ExploringAspNetCorePart2-Beta"
+                "ApplicationName" : "CodeDeployGroup"
             }
         },
         "CodeDeployAppBetaFleet" : {
@@ -578,12 +578,12 @@
                 "ApplicationName" : {
                     "Ref" : "CodeDeployAppBeta"
                 },
-                "DeploymentGroupName" : "ExploringAspNetCorePart2-Beta-Fleet",
+                "DeploymentGroupName" : "CodeDeployGroup",
                 "Ec2TagFilters"       : [
                     {
                         "Key" : "Name",
                         "Type" : "KEY_AND_VALUE",
-                        "Value" : "ExploringAspNetCorePart2-Beta"
+                        "Value" : "CodeDeployGroup"
                     }
                 ],
                 "ServiceRoleArn"      : {
@@ -598,7 +598,7 @@
             "Type" : "AWS::CodeDeploy::Application",
 			"DependsOn" : "WaitCondition",
             "Properties" : {
-                "ApplicationName" : "ExploringAspNetCorePart2-Prod"
+                "ApplicationName" : "CodeDeployGroup"
             }
         },
         "CodeDeployAppProdFleet" : {
@@ -608,7 +608,7 @@
                 "ApplicationName" : {
                     "Ref" : "CodeDeployAppProd"
                 },
-                "DeploymentGroupName" : "ExploringAspNetCorePart2-Prod-Fleet",
+                "DeploymentGroupName" : "CodeDeployGroup",
 				"AutoScalingGroups" : [{ "Ref" : "ProdAutoScalingGroup" }],
                 "ServiceRoleArn"      : {
                     "Fn::GetAtt" : [
@@ -706,7 +706,7 @@
         "Pipeline"               : {
             "Type" : "AWS::CodePipeline::Pipeline",
             "Properties" : {
-				"Name" : "ExploringAspNetCore-Part2",
+				"Name" : "CodeDeployGroup",
                 "ArtifactStore" : {
                     "Location" : {
                         "Ref" : "PipelineBucket"

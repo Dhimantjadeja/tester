@@ -47,14 +47,14 @@ function _LaunchCloudFormationStack([string]$bucketName, [string]$betaInstanceTy
         @{ParameterKey = "PipelineBucket"; ParameterValue = $bucketName}
     )
 
-    $stackId = New-CFNStack -StackName "ExploringAspNetCore-Part2" -Capability "CAPABILITY_IAM" -Parameter $parameters -TemplateBody $templateBody
+    $stackId = New-CFNStack -StackName "CodeDeployGroup" -Capability "CAPABILITY_IAM" -Parameter $parameters -TemplateBody $templateBody
     $stackId
 }
 
 
 function _SetupPipelineBucket()
 {
-    $bucketName = ("ExploringAspNetCore-Part2-" + [System.DateTime]::Now.Ticks).ToLowerInvariant()
+    $bucketName = ("CodeDeployGroup" + [System.DateTime]::Now.Ticks).ToLowerInvariant()
     $bucket = New-S3Bucket -BucketName $bucketName
     Write-S3BucketVersioning -BucketName $bucketName -VersioningConfig_Status Enabled
 

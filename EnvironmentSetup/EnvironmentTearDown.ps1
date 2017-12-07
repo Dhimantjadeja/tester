@@ -9,12 +9,12 @@ if ((Get-DefaultAWSRegion) -eq $null)
 
 function _deletePipelineBucket()
 {
-    Get-S3Bucket | Where-Object {$_.BucketName.StartsWith("exploringaspnetcore-part2-")} | foreach {Write-Host 'Deleting pipeline bucket:' $_.BucketName; Remove-S3Bucket -BucketName $_.BucketName -DeleteBucketContent -Force}    
+    Get-S3Bucket | Where-Object {$_.BucketName.StartsWith("CodeDeployGroup")} | foreach {Write-Host 'Deleting pipeline bucket:' $_.BucketName; Remove-S3Bucket -BucketName $_.BucketName -DeleteBucketContent -Force}    
 }
 
 function _deleteStack()
 {
-    $stack = (Get-CFNStack -StackName "ExploringAspNetCore-Part2" | Where-Object {$_.StackName -eq "ExploringAspNetCore-Part2"})
+    $stack = (Get-CFNStack -StackName "CodeDeployGroup" | Where-Object {$_.StackName -eq "CodeDeployGroup"})
     if($stack -ne $null)
     {
         Write-Host "Deleting CloudFormation existing stack"
