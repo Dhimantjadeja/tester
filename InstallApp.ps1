@@ -4,7 +4,7 @@ sl C:\Downloads\CodeDeployGroup
 & "C:\Program Files\dotnet\dotnet.exe" restore
 
 # Publish application with all of its dependencies and runtime for IIS to use
-& "C:\Program Files\dotnet\dotnet.exe" publish --configuration release -o c:\Downloads\CodeDeployGroup\publish --runtime active
+& "C:\Program Files\dotnet\dotnet.exe" publish --configuration release -o C:\Downloads\CodeDeployGroup\publish --runtime active
 
 
 # Point IIS wwwroot of the published folder. CodeDeploy uses 32 bit version of PowerShell.
