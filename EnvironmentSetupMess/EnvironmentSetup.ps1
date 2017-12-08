@@ -12,12 +12,12 @@ Param(
     # The instance type for the prod stage
     [Parameter()]
     [string]
-    $prodInstanceType = "",
+    $prodInstanceType = "t2.micro",
 
 	# true or false if you want the RDP port opened.
     [Parameter()]
     [bool]
-    $openRDPPort
+    $openRDPPort = 1
 )
 
 function _LaunchCloudFormationStack([string]$bucketName, [string]$betaInstanceType, [string]$prodInstanceType, [string]$keyPair, [bool]$openRDP)
