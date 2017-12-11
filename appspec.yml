@@ -1,8 +1,8 @@
 version: 0.0
 os: windows
 files:
-  - source: \ 
-    destination: C:\Downloads\CodeDeployGroup
+  - source: index.html 
+    destination: C:\inetpub\wwwroot
 hooks:
   ApplicationStop:
     - location: .\RemoveApp.ps1
